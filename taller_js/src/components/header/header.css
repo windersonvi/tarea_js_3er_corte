@@ -1,0 +1,14 @@
+.header {
+    width: 100%;
+    height: 100px;
+    font-weight: bold;
+    text-align: center;
+    background: gold;
+}
+
+.header_logo {
+    font-family: 'Oswald', sans-serif;
+    padding-top: 40px;
+    font-size: 30px;
+    text-shadow: 3px 4px rgba(black, .1);
+}
