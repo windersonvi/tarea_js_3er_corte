@@ -3,16 +3,10 @@ import Formulario from "./components/formulario/formulario"
 import React, { useState, useEffect } from "react";
 
 function App() {
-  // Define el estado para guardar los datos
   const [data, setData] = useState([]);
-
-  // Define la función para hacer la petición al endpoint
   async function getData() {
-    // Usa fetch para hacer una petición GET al endpoint read
     const response = await fetch("http://localhost:5000/read");
-    // Convierte la respuesta en un objeto JSON
     const jsonData = await response.json();
-    // Guarda los datos en el estado
     setData(jsonData.posts);
   }
 

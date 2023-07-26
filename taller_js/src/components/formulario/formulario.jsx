@@ -13,7 +13,6 @@ function Formulario() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nombre, apellido, carro }),
         };
-
         fetch("http://localhost:5000/create", requestOptions)
             .then((response) => response.json())
             .then((data) => {
@@ -27,10 +26,7 @@ function Formulario() {
                 setMensaje("Refresca la pagina para ver la nueva tabla");
             });
     };
-
-    // Define la función que se ejecuta al cambiar el valor de los campos
     const handleChange = (e) => {
-        // Actualiza el estado del campo según su nombre
         switch (e.target.name) {
             case "nombre":
                 setNombre(e.target.value);
