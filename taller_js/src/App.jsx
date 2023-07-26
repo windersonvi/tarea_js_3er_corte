@@ -38,8 +38,38 @@ function App() {
     })
   }
 
-  function editData(id) {
-    window.location.href = `/edit/${id}`;
+  function updateData(id, newValue) {
+    const url = "http://localhost:5000/update";
+    const options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ id: id, ...newValue })
+    };
+    fetch(url, options)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error(response.statusText);
+        }
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.error(error.message);
+      });
+  }
+
+  function handleEdit(id) {
+    const newNombre = prompt("Por favor, introduce el nuevo nombre:");
+    const newApellido = prompt("Por favor, introduce el nuevo apellido:");
+    const newCarro = prompt("Por favor, introduce el nuevo carro:");
+    if (newNombre !== null && newApellido !== null && newCarro !== null) {
+      updateData(id, {nombre: newNombre, apellido: newApellido, carro: newCarro});
+    }
   }
 
   return (
@@ -77,7 +107,9 @@ function App() {
                     Eliminar
                   </button>
                 </td>
-                <td>Editar</td>
+                <td>
+                <button onClick={() => handleEdit(row.id)}>Editar</button>
+                </td>
                 <td>Ver</td>
               </tr>
             ))}
